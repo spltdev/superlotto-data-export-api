@@ -1,4 +1,25 @@
-# Example of report type 8 and JSON format
+---
+icon: code
+---
+
+# Report Type 8 - JSON Format
+
+List of transactions with the clientplatform values.
+
+## Request
+
+**Endpoint**: `GET {base_url}/{partner_id}/{signature}?report_type=8&report_format=json&from={from}&to={to}&utc={utc}`
+
+**Example Request**:
+```
+https://back.staging.splt.eu/partners_reports/15/{signature}?report_type=8&report_format=json&from=20230607000000&to=20230607235959&utc=0
+```
+
+{% hint style="info" %}
+Replace `{signature}` with the MD5 hash generated from your parameters. See [Signature Formatting](../signature-formatting.md) for details.
+{% endhint %}
+
+## Response
 
 ```json
 {

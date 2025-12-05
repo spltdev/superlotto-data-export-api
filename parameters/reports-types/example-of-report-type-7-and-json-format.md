@@ -1,4 +1,25 @@
-# Example of report type 7 and JSON format
+---
+icon: code
+---
+
+# Report Type 7 - JSON Format
+
+List of player transactions.
+
+## Request
+
+**Endpoint**: `GET {base_url}/{partner_id}/{signature}?report_type=7&report_format=json&from={from}&to={to}&utc={utc}`
+
+**Example Request**:
+```
+https://back.staging.splt.eu/partners_reports/15/{signature}?report_type=7&report_format=json&from=20220720000000&to=20220720235959&utc=0
+```
+
+{% hint style="info" %}
+Replace `{signature}` with the MD5 hash generated from your parameters. See [Signature Formatting](../signature-formatting.md) for details.
+{% endhint %}
+
+## Response
 
 ```json
 {

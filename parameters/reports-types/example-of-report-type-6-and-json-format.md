@@ -1,6 +1,29 @@
-# Example of report type 6 and JSON format
+---
+icon: code
+---
 
+# Report Type 6 - JSON Format
+
+List of tickets with the tax amount.
+
+{% hint style="info" %}
 `tax_amount` represents only the tax and `amount_payout` includes both tax amount and the actual payed out winning.
+{% endhint %}
+
+## Request
+
+**Endpoint**: `GET {base_url}/{partner_id}/{signature}?report_type=6&report_format=json&from={from}&to={to}&utc={utc}`
+
+**Example Request**:
+```
+https://back.staging.splt.eu/partners_reports/15/{signature}?report_type=6&report_format=json&from=20240115000000&to=20240115235959&utc=0
+```
+
+{% hint style="info" %}
+Replace `{signature}` with the MD5 hash generated from your parameters. See [Signature Formatting](../signature-formatting.md) for details.
+{% endhint %}
+
+## Response
 
 ```json
 {

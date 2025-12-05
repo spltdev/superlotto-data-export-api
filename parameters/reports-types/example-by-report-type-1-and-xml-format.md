@@ -1,4 +1,25 @@
-# Example of report type 1 and XML format
+---
+icon: code
+---
+
+# Report Type 1 - XML Format
+
+Sales report grouped by partner.
+
+## Request
+
+**Endpoint**: `GET {base_url}/{partner_id}/{signature}?report_type=1&report_format=xml&from={from}&to={to}&utc={utc}`
+
+**Example Request**:
+```
+https://back.staging.splt.eu/partners_reports/15/{signature}?report_type=1&report_format=xml&from=201808130000&to=20180813235959&utc=0
+```
+
+{% hint style="info" %}
+Replace `{signature}` with the MD5 hash generated from your parameters. See [Signature Formatting](../signature-formatting.md) for details.
+{% endhint %}
+
+## Response
 
 {% code lineNumbers="true" %}
 ```xml

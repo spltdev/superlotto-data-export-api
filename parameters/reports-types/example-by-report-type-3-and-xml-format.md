@@ -1,4 +1,25 @@
-# Example of report type 3 and XML format
+---
+icon: code
+---
+
+# Report Type 3 - XML Format
+
+TV lotteries draw results.
+
+## Request
+
+**Endpoint**: `GET {base_url}/{partner_id}/{signature}?report_type=3&report_format=xml&from={from}&to={to}&utc={utc}`
+
+**Example Request**:
+```
+https://back.staging.splt.eu/partners_reports/15/{signature}?report_type=3&report_format=xml&from=20180924000000&to=20180924235959&utc=0
+```
+
+{% hint style="info" %}
+Replace `{signature}` with the MD5 hash generated from your parameters. See [Signature Formatting](../signature-formatting.md) for details.
+{% endhint %}
+
+## Response
 
 ```xml
 <report>

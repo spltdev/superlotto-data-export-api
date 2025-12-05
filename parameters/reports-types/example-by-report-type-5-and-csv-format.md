@@ -1,4 +1,25 @@
-# Example of report type 5 and CSV format
+---
+icon: code
+---
+
+# Report Type 5 - CSV Format
+
+List of pay in and pay out transactions.
+
+## Request
+
+**Endpoint**: `GET {base_url}/{partner_id}/{signature}?report_type=5&report_format=csv&from={from}&to={to}&utc={utc}`
+
+**Example Request**:
+```
+https://back.staging.splt.eu/partners_reports/15/{signature}?report_type=5&report_format=csv&from=201904100000&to=201904102359&utc=0
+```
+
+{% hint style="info" %}
+Replace `{signature}` with the MD5 hash generated from your parameters. See [Signature Formatting](../signature-formatting.md) for details.
+{% endhint %}
+
+## Response
 
 ```csv
 id;datetime;type;amount;currency;player_code
