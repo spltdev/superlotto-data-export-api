@@ -1,8 +1,44 @@
-# Reports types
+---
+icon: list
+---
+
+# Report Types
+
+The Data Export API supports 8 different report types, each providing different data views and available formats.
 
 {% hint style="warning" %}
-If format is not listed here, error will be return if it is requested
+If a format is not listed for a report type, an error code `107` (incorrect_format) will be returned if it is requested.
 {% endhint %}
 
-<table><thead><tr><th width="139.66666666666669">Report type</th><th width="141">Formats</th><th>Description</th></tr></thead><tbody><tr><td><strong><code>1</code></strong></td><td>JSON, XML</td><td>Sales report, grouped by partner</td></tr><tr><td><strong><code>2</code></strong></td><td>JSON, XML</td><td>Sales report, grouped by game</td></tr><tr><td><strong><code>3</code></strong></td><td>JSON, XML</td><td>TV lotteries draw results</td></tr><tr><td><strong><code>4</code></strong></td><td>CSV</td><td>List of tickets</td></tr><tr><td><strong><code>5</code></strong></td><td>CSV</td><td>List of pay in and pay out transactions</td></tr><tr><td><strong><code>6</code></strong></td><td>JSON</td><td>List of tickets with the tax amount</td></tr><tr><td><strong><code>7</code></strong></td><td>JSON</td><td>List of player transactions</td></tr><tr><td><strong><code>8</code></strong></td><td>JSON</td><td>List of transaction with the clientplatform values</td></tr></tbody></table>
+## Available Report Types
+
+| Report Type | Formats | Description |
+|-------------|---------|-------------|
+| `1` | JSON, XML | Sales report, grouped by partner |
+| `2` | JSON, XML | Sales report, grouped by game |
+| `3` | JSON, XML | TV lotteries draw results |
+| `4` | CSV | List of tickets |
+| `5` | CSV | List of pay in and pay out transactions |
+| `6` | JSON | List of tickets with the tax amount |
+| `7` | JSON | List of player transactions |
+| `8` | JSON | List of transactions with the clientplatform values |
+
+## Format Availability
+
+* **JSON**: Available for report types 1, 2, 3, 6, 7, 8
+* **XML**: Available for report types 1, 2, 3
+* **CSV**: Available for report types 4, 5
+
+## Examples
+
+For detailed examples of each report type and format, see the individual example files:
+
+* [Report Type 1 - XML Format](example-by-report-type-1-and-xml-format.md)
+* [Report Type 2 - JSON Format](example-by-report-type-2-and-json-format.md)
+* [Report Type 3 - XML Format](example-by-report-type-3-and-xml-format.md)
+* [Report Type 4 - CSV Format](example-by-report-type-4-and-csv-format.md)
+* [Report Type 5 - CSV Format](example-by-report-type-5-and-csv-format.md)
+* [Report Type 6 - JSON Format](example-of-report-type-6-and-json-format.md)
+* [Report Type 7 - JSON Format](example-of-report-type-7-and-json-format.md)
+* [Report Type 8 - JSON Format](example-of-report-type-8-and-json-format.md)
 

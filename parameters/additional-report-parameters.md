@@ -1,15 +1,43 @@
-# Additional report parameters
+---
+icon: code
+---
 
-Addition report parameters can be passed as URL parameters.
+# Additional Report Parameters
 
-{% tabs %}
-{% tab title="Example:" %}
-{% code overflow="wrap" %}
-```markup
-https://back.staging.splt.eu/partners_reports/15/C6D5D546FD15EAE4FCC24DA4B37B45F7?from=2018081001&to=2018081223&utc=3
+Additional report parameters can be passed as URL query parameters. All parameters are optional and have default values.
+
+## Example Request
+
 ```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
+https://back.staging.splt.eu/partners_reports/15/C6D5D546FD15EAE4FCC24DA4B37B45F7?from=2018081001&to=2018081223&utc=3&report_type=1&report_format=xml
+```
 
-<table><thead><tr><th width="183">Parameter name</th><th width="120" align="center">Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td><strong><code>from</code></strong></td><td align="center">integer</td><td>Yesterday’s first hour</td><td>Format is <code>YYYYMMDDHH</code>. <br>Parameter <code>from</code> cannot be greater than <code>to</code></td></tr><tr><td><strong><code>to</code></strong></td><td align="center">integer</td><td>Last hour of day from parameter „from“</td><td>Format is <code>YYYYMMDDHH</code>. Maximum <code>from</code> and <code>to</code> range is 31 days.</td></tr><tr><td><strong><code>utc</code></strong></td><td align="center">integer</td><td>0</td><td>Timezone offset (-1, 0, 2, 3...)</td></tr><tr><td><strong><code>report_type</code></strong></td><td align="center">integer</td><td>1</td><td><p>Number of report template.</p><p>Allowed values: 1, 2, 3, 4, 5 (See chapter „Reports types“)</p></td></tr><tr><td><strong><code>report_format</code></strong></td><td align="center">string</td><td>xml</td><td><p>Format of the report. Available formats depend on report type that is chosen.</p><p>All possible values: <code>xml</code>, <code>json</code>, <code>csv</code></p></td></tr></tbody></table>
+## Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `from` | integer | Yesterday's first hour | Start date and time in `YYYYMMDDHH` format. Parameter `from` cannot be greater than `to`. |
+| `to` | integer | Last hour of day from parameter `from` | End date and time in `YYYYMMDDHH` format. Maximum `from` and `to` range is **31 days**. |
+| `utc` | integer | 0 | Timezone offset in hours (e.g., -1, 0, 2, 3). |
+| `report_type` | integer | 1 | Report template number. Allowed values: `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`. See [Reports Types](reports-types/README.md) for details. |
+| `report_format` | string | xml | Format of the report. Available formats depend on the selected report type. All possible values: `xml`, `json`, `csv`. |
+
+## Date Format
+
+Both `from` and `to` parameters use the format `YYYYMMDDHH`:
+- `YYYY` - 4-digit year
+- `MM` - 2-digit month (01-12)
+- `DD` - 2-digit day (01-31)
+- `HH` - 2-digit hour (00-23)
+
+**Example**: `2018081001` represents August 10, 2018 at 01:00 (1 AM).
+
+## Date Range Rules
+
+* The `from` parameter cannot be greater than the `to` parameter
+* Maximum date range between `from` and `to` is **31 days**
+* If the range exceeds 31 days, error code `105` will be returned
+
+{% hint style="info" %}
+If `from` and `to` are not specified, the API will return data for yesterday by default.
+{% endhint %}

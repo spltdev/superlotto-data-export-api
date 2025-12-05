@@ -1,119 +1,129 @@
-# Signature formatting
+---
+icon: qrcode
+---
 
-Request signature concluded from **MD5** of all passed parameters (names and values), secret-key and today’s date (YYYYMMDD by UTC0).
+# Signature Formatting
 
-Order of concatenation is as follows:
+The request signature is generated using an **MD5 hash** of all passed parameters (names and values), secret key, and today's date (YYYYMMDD in UTC+0).
 
-1. Partner ID
-2. Parameters (only if present)
-3. Secret key
-4. Date
+## Concatenation Order
+
+The signature is created by concatenating the following components in this specific order:
+
+1. **Partner ID** (integer)
+2. **Parameters** (only if present) - parameter names and values in the order they appear in the URL
+3. **Secret key** (provided by Superlotto.tv)
+4. **Date** (YYYYMMDD format in UTC+0 timezone)
+
+After concatenation, generate an MD5 hash of the resulting string.
 
 {% hint style="warning" %}
-MD5 signature must be passed in **lowercase**
+The MD5 signature must be passed in **lowercase** in the URL.
 {% endhint %}
 
+{% hint style="info" %}
+Always use **UTC+0 timezone** for the date, regardless of your local timezone.
+{% endhint %}
+
+## Step-by-Step Process
+
+1. Get today's date in `YYYYMMDD` format using UTC+0 timezone (e.g., `20180813`)
+2. Get your partner ID (integer, e.g., `15`)
+3. Get your secret key (provided by Superlotto.tv, e.g., `4598-8596`)
+4. If parameters are present, get parameter names and values in the order they appear in the URL
+5. Concatenate all values in order: `partner_id + parameters + secret_key + date`
+6. Generate MD5 hash of the concatenated string (must be lowercase)
+
+## Examples
+
 {% tabs %}
-{% tab title="Example with no parameters" %}
-Base **`URL`** that we are using: **`https://back.staging.splt.eu/partners_reports`**
+{% tab title="Example 1: No Parameters" %}
+**Base URL**: `https://back.staging.splt.eu/partners_reports`
 
-Partner ID is **`15`** and for others parameters we using default values
+**Parameters**:
+- Partner ID: `15`
+- Secret key: `4598-8596`
+- Date (UTC+0): `20180813` (August 13, 2018)
+- No additional parameters (using defaults)
 
-Provided secret key is **`4598-8596`**
-
-#### All piece are concatenated into a single string
-
+**Step 1: Concatenate values**
 ```
 15 + 4598-8596 + 20180813 = 154598-859620180813
 ```
 
-#### MD5 sum is calculated, that results in
-
+**Step 2: Generate MD5 hash**
 ```
 f8de1b09af1dafccd072a81899516c69
 ```
 
-#### Hashed string is then added to the URL
-
-{% code overflow="wrap" %}
+**Final URL**:
 ```
 https://back.staging.splt.eu/partners_reports/15/f8de1b09af1dafccd072a81899516c69
 ```
-{% endcode %}
 {% endtab %}
 
-{% tab title="Example with params #1" %}
-Base **`URL`** that we are using: **`https://back.staging.splt.eu/partners_reports`**
+{% tab title="Example 2: With Date Parameters" %}
+**Base URL**: `https://back.staging.splt.eu/partners_reports`
 
-Partner ID is **`15`**
+**Parameters**:
+- Partner ID: `15`
+- Secret key: `4598-8596`
+- Date (UTC+0): `20180813`
+- `from`: `2018081000` (August 10, 2018 00:00)
+- `to`: `2018081223` (August 12, 2018 23:00)
+- `utc`: `3` (UTC+3)
 
-Provided secret key is **`4598-8596`**
-
-#### Additional parameters
-
-**`from`** – 2018081000 (equates to 2018-08-10 00h).
-
-**`to`** – 2018081223 (equates to 2018-08-12 23h).
-
-**`utc`** – 3 (equates to UTC+3)
-
-#### All piece are concatenated into a single string
-
+**Step 1: Concatenate values (parameter names and values in order)**
 ```
-15 + from + 2018081000 + to + 2018081223 + utc + 3 + 4598-8596 + 20180813 = 15from2018081000to2018081223utc34598-859620180813
+15 + from + 2018081000 + to + 2018081223 + utc + 3 + 4598-8596 + 20180813
+= 15from2018081000to2018081223utc34598-859620180813
 ```
 
-#### MD5 sum is calculated, that results in
-
+**Step 2: Generate MD5 hash**
 ```
 7c971bc319c93dda4b9bb37f461e67aa
 ```
 
-#### Hashed string is then added to the URL
-
+**Final URL**:
 ```
-https://back.staging.splt.eu/partners_reports/15/7c971bc319c93dda4b9bb37f461e67aa?from=2018081000&to=2018081223&utc=3
+https://back.staging.splt.eu/partners_reports/15/7c971bc319c93dda4b9bb37f461e67aa?from=2018081000&to=2018081223&utc=3
 ```
 {% endtab %}
 
-{% tab title="Example with params #2" %}
-Base **`URL`** that we are using: **`https://back.staging.splt.eu/partners_reports`**
+{% tab title="Example 3: With All Parameters" %}
+**Base URL**: `https://back.staging.splt.eu/partners_reports`
 
-Partner ID is **`15`**
+**Parameters**:
+- Partner ID: `15`
+- Secret key: `4598-8596`
+- Date (UTC+0): `20180813`
+- `report_type`: `7`
+- `from`: `2018081000`
+- `to`: `2018081223`
+- `report_format`: `json`
+- `utc`: `3`
 
-Provided secret key is **`4598-8596`**
-
-#### Additional parameters
-
-**`from`** – 2018081000 (equates to 2018-08-10 00h).
-
-**`to`** – 2018081223 (equates to 2018-08-12 23h).
-
-**`utc`** – 3 (equates to UTC+3)
-
-**`report_type`** - from 1 to 7
-
-**`report_format`** - JSON, CSV or XML
-
-#### All piece are concatenated into a single string
-
+**Step 1: Concatenate values (parameter names and values in order)**
 ```
-15 + report_type + 7+ from + 2018081000 + to + 2018081223 + report_format + json+ utc + 3 + 4598-8596 + 20180813 = 15report_type7from2018081000to2018081223report_formatjsonutc34598-859620180813
+15 + report_type + 7 + from + 2018081000 + to + 2018081223 + report_format + json + utc + 3 + 4598-8596 + 20180813
+= 15report_type7from2018081000to2018081223report_formatjsonutc34598-859620180813
 ```
 
-#### MD5 sum is calculated, that results in
-
+**Step 2: Generate MD5 hash**
 ```
 1f8c219292581eeaea83adcb8a0bdfb1
 ```
 
-#### Hashed string is then added to the URL
-
+**Final URL**:
 ```
 https://back.staging.splt.eu/partners_reports/15/1f8c219292581eeaea83adcb8a0bdfb1?report_type=7&from=2018081000&to=2018081223&report_format=json&utc=3
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="warning" %}
+**Important**: Parameter names and values must be concatenated in the exact order they appear in the URL query string. The order matters for signature generation.
+{% endhint %}
 
 
 

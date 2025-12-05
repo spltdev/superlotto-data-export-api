@@ -1,11 +1,37 @@
-# Validations and errors
+---
+icon: circle-exclamation
+---
 
-Service validates request parameters types, logic, signature.
+# Validations and Errors
 
-For **incorrect requests** there are dedicated error codes:
+The API validates request parameters (types and logic) and signature. For incorrect requests, dedicated error codes are returned.
 
-<table><thead><tr><th width="103">Code</th><th width="163">Name</th><th>Reason</th><th>Solution</th></tr></thead><tbody><tr><td><strong><code>101</code></strong></td><td>invalid_params</td><td>Parameter does not exist or incorrect parameter type is used</td><td>Check if correct types / parameter names are used</td></tr><tr><td><strong><code>102</code></strong></td><td>no_permission</td><td>Partner does not have permission to get reports or wrong partner ID is used</td><td>Check if correct partner ID is used otherwise contact Superlotto.tv</td></tr><tr><td><strong><code>103</code></strong></td><td>invalid_signature</td><td>Wrong signature</td><td>Review <a href="signature-formatting.md">signature formatting</a></td></tr><tr><td><strong><code>104</code></strong></td><td>limit_exceeded</td><td>Exceeded requests limit per minute</td><td>Try again after a minute; reduce amount of calls in your application</td></tr><tr><td><strong><code>105</code></strong></td><td>incorrect_range</td><td>Wrong <strong><code>from</code></strong> and <strong><code>to</code></strong> range</td><td>Check date range rules</td></tr><tr><td><strong><code>106</code></strong></td><td>general_error</td><td>Other unnamed error</td><td>contact Superlotto.tv</td></tr><tr><td><strong><code>107</code></strong></td><td>incorrect_format</td><td>Not allowed format of report type</td><td>Check which formats are allowed for individual <a href="reports-types/">report types</a></td></tr></tbody></table>
+## Success Response
 
 {% hint style="success" %}
-If the response is **successful**, code – **`100`**
+If the response is **successful**, the code is **`100`**.
 {% endhint %}
+
+## Error Codes
+
+| Code | Name | Reason | Solution |
+|------|------|--------|----------|
+| `101` | `invalid_params` | Parameter does not exist or incorrect parameter type is used | Check if correct types and parameter names are used |
+| `102` | `no_permission` | Partner does not have permission to get reports or wrong partner ID is used | Check if correct partner ID is used, otherwise contact Superlotto.tv |
+| `103` | `invalid_signature` | Wrong signature | Review [signature formatting](signature-formatting.md) and ensure the signature is generated correctly |
+| `104` | `limit_exceeded` | Exceeded requests limit per minute (5 requests/minute) | Try again after a minute; reduce the amount of calls in your application |
+| `105` | `incorrect_range` | Wrong `from` and `to` date range | Check date range rules: `from` cannot be greater than `to`, and maximum range is 31 days |
+| `106` | `general_error` | Other unnamed error | Contact Superlotto.tv for assistance |
+| `107` | `incorrect_format` | Not allowed format for the selected report type | Check which formats are allowed for individual [report types](reports-types/README.md) |
+
+## Example Error Response
+
+```xml
+<report>
+    <status>
+        <success>0</success>
+        <info>invalid_signature</info>
+        <code>103</code>
+    </status>
+</report>
+```
