@@ -1,0 +1,127 @@
+# Example of report type 3 and XML format
+
+```xml
+<report>
+    <status>
+        <success>1</success>
+        <info>ok</info>
+        <code>100</code>
+    </status>
+    <parameters>
+        <partner>13</partner>
+        <from>20180924000000</from>
+        <to>20180924235959</to>
+        <type>3</type>
+        <utc>0</utc>
+    </parameters>
+    <entries>
+        <entry>
+            <game-id>1</game-id>
+            <game>5_36</game>
+            <studio>5/36</studio>
+            <datetime>2018-09-24 10:03:20</datetime>
+            <status>finished</status>
+            <items>
+                <flask>
+                    <number>1</number>
+                    <items>
+                        <item>22</item>
+                        <item>23</item>
+                        <item>3</item>
+                        <item>35</item>
+                        <item>36</item>
+                    </items>
+                </flask>
+            </items>
+        </entry>
+        <entry>
+            <game-id>2</game-id>
+            <game>7_42</game>
+            <studio>7/42</studio>
+            <datetime>2018-09-24 13:00:00</datetime>
+            <status>finished</status>
+            <items>
+                <flask>
+                    <number>1</number>
+                    <items>
+                        <item>1</item>
+                        <item>10</item>
+                        <item>19</item>
+                        <item>25</item>
+                        <item>37</item>
+                        <item>38</item>
+                        <item>40</item>
+                    </items>
+                </flask>
+            </items>
+        </entry>
+        <entry>
+            <game-id>3</game-id>
+            <game>Interjackpot</game>
+            <studio>7/42</studio>
+            <datetime>2018-09-24 15:00:00</datetime>
+            <status>finished</status>
+            <items>
+                <flask>
+                    <number>1</number>
+                    <items>
+                        <item>16</item>
+                        <item>3</item>
+                        <item>32</item>
+                        <item>36</item>
+                        <item>40</item>
+                        <item>41</item>
+                        <item>6</item>
+                    </items>
+                </flask>
+            </items>
+        </entry>
+        <entry>
+            <game-id>4</game-id>
+            <game>Jokerjackpot</game>
+            <studio>joker</studio>
+            <datetime>2018-09-24 17:01:40</datetime>
+            <status>finished</status>
+            <items>
+                <flask>
+                    <number>1</number>
+                    <items>
+                        <item>9</item>
+                    </items>
+                </flask>
+                <flask>
+                    <number>2</number>
+                    <items>
+                        <item>3</item>
+                    </items>
+                </flask>
+                <flask>
+                    <number>3</number>
+                    <items>
+                        <item>9</item>
+                    </items>
+                </flask>
+                <flask>
+                    <number>4</number>
+                    <items>
+                        <item>1</item>
+                    </items>
+                </flask>
+                <flask>
+                    <number>5</number>
+                    <items>
+                        <item>0</item>
+                    </items>
+                </flask>
+                <flask>
+                    <number>6</number>
+                    <items>
+                        <item>6</item>
+                    </items>
+                </flask>
+            </items>
+        </entry>
+    </entries>
+</report>
+```
+
